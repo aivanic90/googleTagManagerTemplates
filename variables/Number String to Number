@@ -1,0 +1,49 @@
+___INFO___
+
+{
+  "displayName": "Number String to Number",
+  "description": "Converts a string formatted as a number with a comma as the thousands separator and a period as the decimal separator to a number (e.g. \"1.000,99\" -> 1000.99).",
+  "securityGroups": [],
+  "id": "cvt_number_string_public_id",
+  "type": "MACRO",
+  "version": 1,
+  "containerContexts": [
+    "WEB"
+  ],
+  "brand": {}
+}
+
+
+___TEMPLATE_PARAMETERS___
+
+[
+  {
+    "help": "Enter the number string like \"1.000,99\" or \"10,99\"",
+    "valueValidators": [
+      {
+        "args": [
+          "\\d+([\\.,]\\d+)?"
+        ],
+        "type": "REGEX"
+      }
+    ],
+    "displayName": "String to Convert",
+    "simpleValueType": true,
+    "name": "numberString",
+    "type": "TEXT"
+  }
+]
+
+
+___SANDBOXED_JS_FOR_WEB_TEMPLATE___
+
+let numberString = data.numberString;
+numberString = numberString.replace(".","");
+numberString = numberString.replace(",",".");
+
+// Variables must return a value.
+return numberString;
+
+___NOTES___
+
+Created on 12/17/2019, 12:40:00 PM
